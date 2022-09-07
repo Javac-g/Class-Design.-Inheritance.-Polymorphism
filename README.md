@@ -1,7 +1,7 @@
 # Class-Design.-Inheritance.-Polymorphism
 Practice tasks
 
-#Task 1
+##################### --- Task 1 --- #####################
 
 Please, make refactoring of the code:
 
