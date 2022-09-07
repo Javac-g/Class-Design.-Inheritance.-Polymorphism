@@ -1,6 +1,7 @@
 class Person {
-    int age;
-    String childIDNumber, healthInfo, passportNumber,name;
+    
+    private int age;
+    private String childIDNumber, healthInfo, passportNumber,name;
 
     public Person(String childIDNumber) {
         this.childIDNumber = childIDNumber;
@@ -18,9 +19,9 @@ class Person {
 
 class Child extends Person {
 
-    int age;
+    private int age;
 
-    String healthInfo,childIDNumber, name;
+    private String healthInfo,childIDNumber, name;
 
     public Child(int age, String healthInfo, String name,String childIDNumber) {
 
@@ -36,9 +37,9 @@ class Child extends Person {
 }
 
 class Adult extends Person {
-    int age;
+    private int age;
 
-    String healthInfo, passportNumber, name;
+    private String healthInfo, passportNumber, name;
 
     public Adult(int age, String healthInfo, String passportNumber, String name) {
         super(age,healthInfo,name);
