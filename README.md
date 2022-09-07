@@ -4,6 +4,7 @@ Practice tasks
 ##################### --- Task 1 --- #####################
 
 Please, make refactoring of the code:
+<pre>
 <code>
 class Person {
     String childIDNumber;    
@@ -24,6 +25,7 @@ class Adult {
     String getHealthStatus(){ return name +" " + healthInfo; }
 }
 </code>
+</pre>
 We know that adult  doesn't have childIDNumber.
 Child doesn't have passportNumber.
 Create a public constructor in each class to initialize all their fields (make the first parameter of type int).
@@ -71,6 +73,7 @@ For example, for a given list
 you should get 46
 ##################### --- Task 6 --- #####################
 -
+<pre>
 <code>
 public class Shape{
     private String name;
@@ -98,6 +101,7 @@ public class Shape{
     }
 }
 </code>
+</pre>
 Please create class Shape with abstract method to calculate area of figure and field name. Replace code in method getArea() according to principles of polymorphism i.e. Circle and Rectangle classes extends Shape class and override double getArea() method. Develop maxAreas() method of the MyUtils class to return a List with instances of maximum area.
 The original list must be unchanged.
 For example, for a given list
