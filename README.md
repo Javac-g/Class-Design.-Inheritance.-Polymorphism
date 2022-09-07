@@ -27,7 +27,7 @@ We know that adult  doesn't have childIDNumber.
 Child doesn't have passportNumber.
 Create a public constructor in each class to initialize all their fields (make the first parameter of type int).
 
-########################################################## --- Task 2 --- ##########################################################
+################################ --- Task 2 --- ################################
 -
 Create interface DrinkReceipt with methods String getName() and DrinkReceipt addComponent(String componentName, int componentCount). Create interface DrinkPreparation with method Map<String, Integer> makeDrink() to return a drink components. Create interface Rating with method int getRating().
 Class Caffee contains fields String name, int rating, Map of ingredients and implements interfaces DrinkReceipt, DrinkPreparation and Rating. Method makeDrink() prepare coffee with typically components: {Water=100, Arabica=20}. Espresso and Cappuccino classes extends the Caffee Class and override method makeDrink(). Espresso caffee has 50 g. of Water. Cappuccino caffee has an additional of 50 g. of Milk.
@@ -38,7 +38,7 @@ you should get
 {Espresso=9.00, Cappuccino=8.00, Caffee=6.00}
 
 
-########################################################## --- Task 3 --- ##########################################################
+################################ --- Task 3 --- ################################
 -
 Create next types: Person (field String name), Student (fields String studyPlace, int studyYears) and Worker (fields String workPosition, int experienceYears). Classes Student and Worker are derived from class Person. All classes have getters to return fields.
 Create a maxDuration() method of the MyUtils class to return a list of Students with maximum duration of study and Workers with maximum experience.
@@ -48,7 +48,7 @@ you should get
 [Worker [name=Andriy, workPosition=Developer, experienceYears=12], Student [name=Stepan, studyPlace=College, studyYears=4], Student [name=Ihor, studyPlace=University, studyYears=4]]
 
 
-########################################################## --- Task 4 --- ##########################################################
+################################ --- Task 4 --- ################################
 -
 Create classes Employee (fields String name, int experience and BigDecimal basePayment) and Manager (field double coefficient) with methods which return the general working experience and payment for work done.
 A getter methods of class Employee return value of all fields: getName(), getExperience() and getPayment().
@@ -60,7 +60,7 @@ For example, for a given list
 you should get
 [Employee [name=Ivan, experience=10, basePayment=3000.00], Manager [name=Petro, experience=9, basePayment=3000.00, coefficient=1.5], Employee [name=Ihor, experience=5, basePayment=4500.00]].
 
-########################################################## --- Task 5 --- ##########################################################
+################################ --- Task 5 --- ################################
 -
 Create classes Square and Rectang with method (double getPerimeter()) for calculating of perimeter.
 Find solution for avoiding of duplicate code.
@@ -68,7 +68,7 @@ Create a double sumPerimeter(List<?> firures) method of the MyUtils class to ret
 For example, for a given list
 [[Square [width=4.00], Square [width=5.00], Rectang [height=2.00, width=3.00]]
 you should get 46
-########################################################## --- Task 6 --- ##########################################################
+################################ --- Task 6 --- ################################
 -
 public class Shape{
     private String name;
