@@ -1,14 +1,28 @@
-# 🧠 Class Design, Inheritance & Polymorphism Practice
+# 🧠 Java OOP Practice: Class Design, Inheritance & Polymorphism
 
-Welcome to a series of Java practice tasks focusing on core Object-Oriented Programming principles: **inheritance**, **polymorphism**, **interfaces**, and **clean code design**.
+Welcome to a collection of practical Java exercises focused on core Object-Oriented Programming concepts:  
+**Inheritance**, **Polymorphism**, **Interfaces**, and **Clean Code Design**.
+
+---
+
+## 📚 Table of Contents
+1. [Task 1 — Refactor Classes](#task-1--refactor-classes)
+2. [Task 2 — Coffee Interfaces and Ratings](#task-2--coffee-interfaces-and-ratings)
+3. [Task 3 — Max Duration](#task-3--max-duration)
+4. [Task 4 — Max Experience & Payment](#task-4--max-experience--payment)
+5. [Task 5 — Geometry: Avoid Duplicate Logic](#task-5--geometry-avoid-duplicate-logic)
+6. [Task 6 — Polymorphism for Shapes](#task-6--polymorphism-for-shapes)
 
 ---
 
 ## ✅ Task 1 — Refactor Classes
 
-**Goal:** Refactor the classes below to eliminate code duplication and follow clean design principles.
+**Goal:** Eliminate duplication and design a clear class hierarchy.
 
-```java
+<details>
+<summary>🧾 Initial Code</summary>
+
+```
 class task3.Person {
     String childIDNumber;    
 }
@@ -33,217 +47,174 @@ class Adult {
 }
 ```
 
-- Adults don't have `childIDNumber`.
-- Children don't have `passportNumber`.
-- Create constructors in each class to initialize all fields (first parameter should be `int`).
-- Refactor to reduce duplicate code.
+</details>
+
+🔧 **Refactor Hints:**
+- Use a common base class with shared fields.
+- Children don't need `passportNumber`, adults don't need `childIDNumber`.
+- Add constructors that initialize all fields.
 
 ---
 
 ## ☕ Task 2 — Coffee Interfaces and Ratings
 
-**Goal:** Create a flexible coffee system using interfaces and class hierarchy.
+**Goal:** Design a flexible coffee system with interface-based composition.
 
-### Interfaces:
+### 🔌 Interfaces
 
-- `DrinkReceipt`:  
-  ```java
-  String getName();
-  DrinkReceipt addComponent(String componentName, int componentCount);
-  ```
-
-- `DrinkPreparation`:  
-  ```java
-  Map<String, Integer> makeDrink();
-  ```
-
-- `Rating`:  
-  ```java
-  int getRating();
-  ```
-
-### Classes:
-
-- `Caffee`:
-  - Fields: `String name`, `int rating`, `Map<String, Integer> ingredients`
-  - Implements all three interfaces
-  - `makeDrink()` should return `{Water=100, Arabica=20}`
-
-- `Espresso`:
-  - Inherits `Caffee`
-  - Overrides `makeDrink()` → `{Water=50, Arabica=20}`
-
-- `Cappuccino`:
-  - Inherits `Caffee`
-  - Overrides `makeDrink()` → `{Water=100, Arabica=20, Milk=50}`
-
-### Utility:
-
-- Method `averageRating()` in `task3.task4.task5.task6.MyUtils` should return a `Map<String, Double>` representing average rating for each drink name.
-
-#### Example:
-Input:
-```java
-[Espresso(name=Espresso, rating=8),
- Cappuccino(name=Cappuccino, rating=10),
- Espresso(name=Espresso, rating=10),
- Cappuccino(name=Cappuccino, rating=6),
- Caffee(name=Caffee, rating=6)]
 ```
+interface DrinkReceipt {
+    String getName();
+    DrinkReceipt addComponent(String componentName, int componentCount);
+}
+
+interface DrinkPreparation {
+    Map<String, Integer> makeDrink();
+}
+
+interface Rating {
+    int getRating();
+}
+```
+
+### 🧩 Class Hierarchy
+
+- `Caffee` (base class) implements all three interfaces.
+- `Espresso` and `Cappuccino` override `makeDrink()` to adjust ingredients.
+
+### 📈 Utility Method
+
+```
+Map<String, Double> MyUtils.averageRating(List<? extends Rating>)
+```
+
+<details>
+<summary>📊 Example Input & Output</summary>
+
+Input:
+```
+[Espresso(8), Cappuccino(10), Espresso(10), Cappuccino(6), Caffee(6)]
+```
+
 Output:
-```java
+```
 {Espresso=9.00, Cappuccino=8.00, Caffee=6.00}
 ```
+
+</details>
 
 ---
 
 ## 🎓 Task 3 — Max Duration
 
-**Goal:** Identify the students with the longest study and workers with the most experience.
+**Goal:** Find students with the maximum study years and workers with the maximum experience.
 
-### Classes:
-- `task3.Person(String name)`
-- `task3.Student(String studyPlace, int studyYears)` → extends `task3.Person`
-- `task3.Worker(String workPosition, int experienceYears)` → extends `task3.Person`
+### 👥 Class Overview
 
-All classes must have proper getters.
-
-### Utility:
-
-- Method `maxDuration(List<task3.Person>)` in `task3.task4.task5.task6.MyUtils` should return a `List<task3.Person>` with:
-  - Workers with **max experience**
-  - Students with **max study years**
-
-#### Example:
-Input:
-```java
-[task3.Person(name=Ivan),
- task3.Student(name=Petro, studyPlace=University, studyYears=3),
- task3.Worker(name=Andriy, workPosition=Developer, experienceYears=12),
- task3.Student(name=Stepan, studyPlace=College, studyYears=4),
- task3.Worker(name=Ira, workPosition=task4.Manager, experienceYears=8),
- task3.Student(name=Ihor, studyPlace=University, studyYears=4)]
+```
+Person(String name)
+Student(String studyPlace, int studyYears) // extends Person
+Worker(String workPosition, int experienceYears) // extends Person
 ```
 
-Output:
-```java
-[task3.Worker(name=Andriy, ...), task3.Student(name=Stepan, ...), task3.Student(name=Ihor, ...)]
+### 🧮 Utility
+
 ```
+List<Person> MyUtils.maxDuration(List<Person> people)
+```
+
+<details>
+<summary>📊 Example</summary>
+
+Output contains:
+- Students with max `studyYears`
+- Workers with max `experienceYears`
+
+</details>
 
 ---
 
 ## 💼 Task 4 — Max Experience & Payment
 
-**Goal:** Handle payment logic and filter out the most experienced and highest-paid employees.
+### 🧾 Class Design
 
-### Classes:
-
-- `task4.Employee(String name, int experience, BigDecimal basePayment)`
-  - Methods: `getName()`, `getExperience()`, `getPayment()`
-
-- `task4.Manager(double coefficient)` → extends `task4.Employee`
-  - Overrides `getPayment()` to return `basePayment * coefficient`
-
-### Utility:
-
-- Method `largestEmployees(List<task4.Employee>)` in `task3.task4.task5.task6.MyUtils` should return:
-  - Unique employees with **max experience**
-  - Unique employees with **max payment**
-
-#### Example:
-Input:
-```java
-[task4.Employee(Ivan, 10, 3000.00),
- task4.Manager(Petro, 9, 3000.00, 1.5),
- task4.Employee(Stepan, 8, 4000.00),
- task4.Employee(Andriy, 7, 3500.00),
- task4.Employee(Ihor, 5, 4500.00),
- task4.Manager(Vasyl, 8, 2000.00, 2.0)]
+```
+Employee(String name, int experience, BigDecimal basePayment)
+Manager(double coefficient) // extends Employee
 ```
 
-Output:
-```java
-[task4.Employee(Ivan, ...), task4.Manager(Petro, ...), task4.Employee(Ihor, ...)]
+- `Manager` overrides `getPayment()` → `basePayment * coefficient`
+
+### 📊 Utility Method
+
 ```
+List<Employee> MyUtils.largestEmployees(List<Employee> employees)
+```
+
+Returns employees with:
+- Max experience
+- Max payment (unique by name)
 
 ---
 
 ## 📏 Task 5 — Geometry: Avoid Duplicate Logic
 
-**Goal:** Create figure classes and avoid duplicated perimeter logic.
+**Goal:** Avoid perimeter duplication in `Square` and `Rectangle`.
 
-### Classes:
-- `task5.Square(double width)`
-- `task5.Rectang(double width, double height)`
+### 📦 Class Overview
 
-Both implement `getPerimeter()` method.
-
-### Utility:
-
-- Method `sumPerimeter(List<?>)` in `task3.task4.task5.task6.MyUtils` should return the **total perimeter** of all figures.
-
-#### Example:
-Input:
-```java
-[task5.Square(width=4.00), task5.Square(width=5.00), task5.Rectang(height=2.00, width=3.00)]
+```
+Square(double width)
+Rectang(double width, double height)
 ```
 
-Output:  
-`46.00`
+Both implement:
+
+```
+double getPerimeter();
+```
+
+### 🧮 Utility
+
+```
+double MyUtils.sumPerimeter(List<?> figures)
+```
 
 ---
 
 ## 🔺 Task 6 — Polymorphism for Shapes
 
-### Initial Class (to be refactored):
-
-```java
-public class task6.Shape {
-    private String name;
-    public task6.Shape(String name) { this.name = name; }
-    public String getName() { return name; }
-    public double getArea() {
-        if (getName().equals("task6.Circle")) return getCircleArea();
-        else return getRectangleArea();
-    }
+**Before:**
+```
+double getArea() {
+  if (name.equals("Circle")) return getCircleArea();
+  else return getRectangleArea();
 }
 ```
 
-### Goal:
+### ✅ Goal:
 
-- Replace conditional logic with **polymorphism**.
-- Make `task6.Shape` an abstract class with an abstract method `double getArea()`.
-- Create `task6.Circle` and `task6.Rectangle` classes that override `getArea()`.
+- Convert to:
+  ```
+  abstract class Shape { abstract double getArea(); }
+  ```
 
-### Utility:
+- Implement `Circle` and `Rectangle` as concrete classes.
 
-- Method `maxAreas(List<task6.Shape>)` in `task3.task4.task5.task6.MyUtils` should return:
-  - All shapes that have the **maximum area**.
+### 🧮 Utility
 
-#### Example:
-Input:
-```java
-[task6.Circle(radius=2.00),
- task6.Rectangle(height=2.00, width=3.00),
- task6.Circle(radius=1.00),
- task6.Rectangle(height=3.00, width=2.00),
- task6.Circle(radius=0.50),
- task6.Rectangle(height=1.00, width=2.00)]
+```
+List<Shape> MyUtils.maxAreas(List<Shape> shapes)
 ```
 
-Output:
-```java
-[task6.Circle(radius=2.00), task6.Rectangle(2x3), task6.Rectangle(3x2)]
-```
+Returns shapes with the **maximum area**.
 
 ---
 
-## 📌 Summary
+## 🧾 Summary
 
-This project is a collection of OOP practice problems that enhance your understanding of:
-
-- Inheritance and class hierarchy
-- Interfaces and implementation
-- Refactoring and clean code
-- Polymorphism and abstraction
-- Working with collections, streams, and maps
+These tasks strengthen your understanding of:
+- ✅ Clean class hierarchy
+- ✅ Interfaces and polymorphism
+- ✅ Collection and stream operations
+- ✅ Method overriding and abstraction
