@@ -9,7 +9,7 @@ Welcome to a series of Java practice tasks focusing on core Object-Oriented Prog
 **Goal:** Refactor the classes below to eliminate code duplication and follow clean design principles.
 
 ```java
-class task3.Person {
+class Person {
     String childIDNumber;    
 }
 
@@ -79,7 +79,7 @@ class Adult {
 
 ### Utility:
 
-- Method `averageRating()` in `task3.task4.task5.task6.MyUtils` should return a `Map<String, Double>` representing average rating for each drink name.
+- Method `averageRating()` in `MyUtils` should return a `Map<String, Double>` representing average rating for each drink name.
 
 #### Example:
 Input:
@@ -102,32 +102,32 @@ Output:
 **Goal:** Identify the students with the longest study and workers with the most experience.
 
 ### Classes:
-- `task3.Person(String name)`
-- `task3.Student(String studyPlace, int studyYears)` → extends `task3.Person`
-- `task3.Worker(String workPosition, int experienceYears)` → extends `task3.Person`
+- `Person(String name)`
+- `Student(String studyPlace, int studyYears)` → extends `Person`
+- `Worker(String workPosition, int experienceYears)` → extends `Person`
 
 All classes must have proper getters.
 
 ### Utility:
 
-- Method `maxDuration(List<task3.Person>)` in `task3.task4.task5.task6.MyUtils` should return a `List<task3.Person>` with:
+- Method `maxDuration(List<Person>)` in `MyUtils` should return a `List<Person>` with:
   - Workers with **max experience**
   - Students with **max study years**
 
 #### Example:
 Input:
 ```java
-[task3.Person(name=Ivan),
- task3.Student(name=Petro, studyPlace=University, studyYears=3),
- task3.Worker(name=Andriy, workPosition=Developer, experienceYears=12),
- task3.Student(name=Stepan, studyPlace=College, studyYears=4),
- task3.Worker(name=Ira, workPosition=task4.Manager, experienceYears=8),
- task3.Student(name=Ihor, studyPlace=University, studyYears=4)]
+[Person(name=Ivan),
+ Student(name=Petro, studyPlace=University, studyYears=3),
+ Worker(name=Andriy, workPosition=Developer, experienceYears=12),
+ Student(name=Stepan, studyPlace=College, studyYears=4),
+ Worker(name=Ira, workPosition=Manager, experienceYears=8),
+ Student(name=Ihor, studyPlace=University, studyYears=4)]
 ```
 
 Output:
 ```java
-[task3.Worker(name=Andriy, ...), task3.Student(name=Stepan, ...), task3.Student(name=Ihor, ...)]
+[Worker(name=Andriy, ...), Student(name=Stepan, ...), Student(name=Ihor, ...)]
 ```
 
 ---
@@ -138,32 +138,32 @@ Output:
 
 ### Classes:
 
-- `task4.Employee(String name, int experience, BigDecimal basePayment)`
+- `Employee(String name, int experience, BigDecimal basePayment)`
   - Methods: `getName()`, `getExperience()`, `getPayment()`
 
-- `task4.Manager(double coefficient)` → extends `task4.Employee`
+- `Manager(double coefficient)` → extends `Employee`
   - Overrides `getPayment()` to return `basePayment * coefficient`
 
 ### Utility:
 
-- Method `largestEmployees(List<task4.Employee>)` in `task3.task4.task5.task6.MyUtils` should return:
+- Method `largestEmployees(List<Employee>)` in `MyUtils` should return:
   - Unique employees with **max experience**
   - Unique employees with **max payment**
 
 #### Example:
 Input:
 ```java
-[task4.Employee(Ivan, 10, 3000.00),
- task4.Manager(Petro, 9, 3000.00, 1.5),
- task4.Employee(Stepan, 8, 4000.00),
- task4.Employee(Andriy, 7, 3500.00),
- task4.Employee(Ihor, 5, 4500.00),
- task4.Manager(Vasyl, 8, 2000.00, 2.0)]
+[Employee(Ivan, 10, 3000.00),
+ Manager(Petro, 9, 3000.00, 1.5),
+ Employee(Stepan, 8, 4000.00),
+ Employee(Andriy, 7, 3500.00),
+ Employee(Ihor, 5, 4500.00),
+ Manager(Vasyl, 8, 2000.00, 2.0)]
 ```
 
 Output:
 ```java
-[task4.Employee(Ivan, ...), task4.Manager(Petro, ...), task4.Employee(Ihor, ...)]
+[Employee(Ivan, ...), Manager(Petro, ...), Employee(Ihor, ...)]
 ```
 
 ---
@@ -173,19 +173,19 @@ Output:
 **Goal:** Create figure classes and avoid duplicated perimeter logic.
 
 ### Classes:
-- `task5.Square(double width)`
-- `task5.Rectang(double width, double height)`
+- `Square(double width)`
+- `Rectang(double width, double height)`
 
 Both implement `getPerimeter()` method.
 
 ### Utility:
 
-- Method `sumPerimeter(List<?>)` in `task3.task4.task5.task6.MyUtils` should return the **total perimeter** of all figures.
+- Method `sumPerimeter(List<?>)` in `MyUtils` should return the **total perimeter** of all figures.
 
 #### Example:
 Input:
 ```java
-[task5.Square(width=4.00), task5.Square(width=5.00), task5.Rectang(height=2.00, width=3.00)]
+[Square(width=4.00), Square(width=5.00), Rectang(height=2.00, width=3.00)]
 ```
 
 Output:  
@@ -198,12 +198,12 @@ Output:
 ### Initial Class (to be refactored):
 
 ```java
-public class task6.Shape {
+public class Shape {
     private String name;
-    public task6.Shape(String name) { this.name = name; }
+    public Shape(String name) { this.name = name; }
     public String getName() { return name; }
     public double getArea() {
-        if (getName().equals("task6.Circle")) return getCircleArea();
+        if (getName().equals("Circle")) return getCircleArea();
         else return getRectangleArea();
     }
 }
@@ -212,28 +212,28 @@ public class task6.Shape {
 ### Goal:
 
 - Replace conditional logic with **polymorphism**.
-- Make `task6.Shape` an abstract class with an abstract method `double getArea()`.
-- Create `task6.Circle` and `task6.Rectangle` classes that override `getArea()`.
+- Make `Shape` an abstract class with an abstract method `double getArea()`.
+- Create `Circle` and `Rectangle` classes that override `getArea()`.
 
 ### Utility:
 
-- Method `maxAreas(List<task6.Shape>)` in `task3.task4.task5.task6.MyUtils` should return:
+- Method `maxAreas(List<Shape>)` in `MyUtils` should return:
   - All shapes that have the **maximum area**.
 
 #### Example:
 Input:
 ```java
-[task6.Circle(radius=2.00),
- task6.Rectangle(height=2.00, width=3.00),
- task6.Circle(radius=1.00),
- task6.Rectangle(height=3.00, width=2.00),
- task6.Circle(radius=0.50),
- task6.Rectangle(height=1.00, width=2.00)]
+[Circle(radius=2.00),
+ Rectangle(height=2.00, width=3.00),
+ Circle(radius=1.00),
+ Rectangle(height=3.00, width=2.00),
+ Circle(radius=0.50),
+ Rectangle(height=1.00, width=2.00)]
 ```
 
 Output:
 ```java
-[task6.Circle(radius=2.00), task6.Rectangle(2x3), task6.Rectangle(3x2)]
+[Circle(radius=2.00), Rectangle(2x3), Rectangle(3x2)]
 ```
 
 ---
